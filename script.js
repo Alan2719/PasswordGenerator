@@ -16,39 +16,70 @@ function UppercaseLetter(length,repo){
 function LowercaseLetter(length,repo) {
   var Lletters = ['a','b','c','d','e','f','g','h','i','j',
   'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  l = Math.floor(length /4);
-  for (var i = 0; i < l; i++) {
-    var random = Math.floor(Math.random()*Lletters.length);
-    var indexRandom = Math.floor(Math.random()*repo.length);
-    console.log(random);
-    repo[indexRandom] = (Lletters[random]);
+  if (repo.length == length) {
+    l = Math.floor(length /4);
+    for (var i = 0; i < l; i++) {
+      var random = Math.floor(Math.random()*Lletters.length);
+      var indexRandom = Math.floor(Math.random()*repo.length);
+      console.log(random);
+      repo[indexRandom] = (Lletters[random]);
+    }
+  } else {
+    l = length;
+    for (var i = 0; i < length; i++) {
+      var random = Math.floor(Math.random()*Lletters.length);
+      console.log(random);
+      repo.push(Lletters[random]);
+    }
   }
+
   console.log(repo);
-  return (l,repo)
+  return (repo)
 };
 
 function RandomCharacters (length,repo) {
   var SpecialCharacters = ['!','#','$','%','&','/','(',')','=','?',
   '¡','¿','+','-','_','*','~','{','}','[',']',':',';',',','|','"'];
-  l = Math.floor(length /4);
-  for (var i = 0; i < l; i++) {
-    var random = Math.floor(Math.random()*SpecialCharacters.length);
-    var indexRandom = Math.floor(Math.random()*repo.length);
-    console.log(random);
-    repo[indexRandom] = (SpecialCharacters[random]);
+  if (repo.length == length) {
+    l = Math.floor(length /4);
+    for (var i = 0; i < l; i++) {
+      var random = Math.floor(Math.random()*SpecialCharacters.length);
+      var indexRandom = Math.floor(Math.random()*repo.length);
+      console.log(random);
+      repo[indexRandom] = (SpecialCharacters[random]);
+    }
+  } else {
+    l = length;
+    for (var i = 0; i < length; i++) {
+      var random = Math.floor(Math.random()*SpecialCharacters.length);
+      console.log(random);
+      repo.push(SpecialCharacters[random]);
+    }
   }
   console.log(repo);
-  return (l,repo);
+  return (repo);
 };
 
 function RandomNumbers(length,repo) {
-  l = Math.floor(length /4);
-  for (var i = 0; i < l; i++) {
-    var random = Math.floor(Math.random()*11);
-    var indexRandom = Math.floor(Math.random()*repo.length);
-    console.log(random);
-    repo[indexRandom] = random;
+  if (repo.length == length) {
+    l = Math.floor(length /4);
+    console.log(l);
+    for (var i = 0; i < l; i++) {
+      var random = Math.floor(Math.random()*11);
+      var indexRandom = Math.floor(Math.random()*repo.length);
+      console.log(random);
+      repo[indexRandom] = random;
+    }
+  } else {
+    l = length;
+    for (var i = 0; i < l; i++) {
+      var random = Math.floor(Math.random()*11);
+      var indexRandom = Math.floor(Math.random()*repo.length);
+      console.log(random);
+      repo.push(random);
+    }
   }
+ 
   console.log(repo);
   console.log(repo.join(""));
   return repo.join("");
@@ -92,7 +123,6 @@ function generatePassword(){
 
     for (var j = 0; j < AnswerList.length; j++) {
       if (j === 0){
-
         if (AnswerList[j] === passwordText[j].a) {
           UppercaseLetter(passwordLength,repo);
           } else {
