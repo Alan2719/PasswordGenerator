@@ -17,7 +17,7 @@ function LowercaseLetter(length,repo) {
   var Lletters = ['a','b','c','d','e','f','g','h','i','j',
   'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   if (repo.length == length) {
-    l = Math.floor(length /4);
+    l = Math.floor(length /3);
     for (var i = 0; i < l; i++) {
       var random = Math.floor(Math.random()*Lletters.length);
       var indexRandom = Math.floor(Math.random()*repo.length);
@@ -41,7 +41,7 @@ function RandomCharacters (length,repo) {
   var SpecialCharacters = ['!','#','$','%','&','/','(',')','=','?',
   '¡','¿','+','-','_','*','~','{','}','[',']',':',';',',','|','"'];
   if (repo.length == length) {
-    l = Math.floor(length /4);
+    l = Math.floor(length /3);
     for (var i = 0; i < l; i++) {
       var random = Math.floor(Math.random()*SpecialCharacters.length);
       var indexRandom = Math.floor(Math.random()*repo.length);
@@ -62,7 +62,7 @@ function RandomCharacters (length,repo) {
 
 function RandomNumbers(length,repo) {
   if (repo.length == length) {
-    l = Math.floor(length /4);
+    l = Math.floor(length /3);
     console.log(l);
     for (var i = 0; i < l; i++) {
       var random = Math.floor(Math.random()*11);
@@ -82,7 +82,7 @@ function RandomNumbers(length,repo) {
  
   console.log(repo);
   console.log(repo.join(""));
-  return repo.join("");
+  return (repo);
 };
 
 var passwordText = [
@@ -107,7 +107,7 @@ function generatePassword(){
   var AnswerList = [];
   var repo = [];
 
-  if (passwordLength) {
+  if (passwordLength >= 8 && passwordLength <= 128) {
     for (var i = 0; i < passwordText.length; i++) {
       answer = confirm(passwordText[i].q);
 
@@ -148,14 +148,15 @@ function generatePassword(){
 
       if (j === 3) {
         if (AnswerList[j] === passwordText[j].a) {
-          var password = RandomNumbers(passwordLength,repo);
-          return password;
+          RandomNumbers(passwordLength,repo);
         } else{
-            var password = RandomCharacters(passwordLength,repo);
-            return password;
+            passwordLength = passwordLength;
           }
         }
-    }  
+    }
+    var password = repo.join("");
+    console.log(password);
+    return password;
   } else {
     alert("No valid length");}
 };
