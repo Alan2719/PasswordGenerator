@@ -2,29 +2,29 @@
 var generateBtn = document.querySelector("#generate");    //Returns the first element that matches a specified CSS selector(s) in the document.
 
 function UppercaseLetter(length,repo){
-  var Uletters = ['A','B','C','D','E','F','G','H','I','J',
+  var Uletters = ['A','B','C','D','E','F','G','H','I','J',            //Uppercase letters array
   'K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-  for (var i = 0; i < length; i++) {
-    var random = Math.floor(Math.random()*Uletters.length);
+  for (var i = 0; i < length; i++) {                                  //Generate random numbers to insert them in the uppercase array to generate random letters.
+    var random = Math.floor(Math.random()*Uletters.length);   
     console.log(random);
-    repo.push(Uletters[random]);
+    repo.push(Uletters[random]);                    //Append random letters into the empty array
   }
   console.log(repo);
   return (repo)
 };
 
-function LowercaseLetter(length,repo) {
+function LowercaseLetter(length,repo) {         
   var Lletters = ['a','b','c','d','e','f','g','h','i','j',
   'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  if (repo.length == length) {
-    l = Math.floor(length /3);
-    for (var i = 0; i < l; i++) {
+  if (repo.length == length) {                  //If to know if the repo is empty or full
+    l = Math.floor(length /3);                  
+    for (var i = 0; i < l; i++) {               //If the repo is full, create random index to have random letters and susbstitute elements in the array.
       var random = Math.floor(Math.random()*Lletters.length);
       var indexRandom = Math.floor(Math.random()*repo.length);
       console.log(random);
       repo[indexRandom] = (Lletters[random]);
     }
-  } else {
+  } else {                                    //If the repo is empty, append elements until full the array.
     l = length;
     for (var i = 0; i < length; i++) {
       var random = Math.floor(Math.random()*Lletters.length);
@@ -85,8 +85,8 @@ function RandomNumbers(length,repo) {
   return (repo);
 };
 
-var passwordText = [
-  {q: 'Do you want to have Uppercase letters in your password?',
+var passwordText = [                                        //Array with object elements. 
+  {q: 'Do you want to have Uppercase letters in your password?',  
     a:'y',
   },
   {q: 'Do you want to have lowercase letters in your password?',
@@ -100,15 +100,15 @@ var passwordText = [
   }
 ];
 
-function generatePassword(){
+function generatePassword(){            //Function that will generate the password.
   var passwordLength = prompt('Enter the number of characters between 8 and 128: ');
   var answer = "";
   var boolToString = "";
   var AnswerList = [];
   var repo = [];
 
-  if (passwordLength >= 8 && passwordLength <= 128) {
-    for (var i = 0; i < passwordText.length; i++) {
+  if (passwordLength >= 8 && passwordLength <= 128) {     //If to know if the password has the right length.
+    for (var i = 0; i < passwordText.length; i++) {       //for to convert true and false into strings (y or n).
       answer = confirm(passwordText[i].q);
 
       if (answer) {
@@ -119,14 +119,14 @@ function generatePassword(){
         AnswerList.push(boolToString);
       }
     }
-    console.log(AnswerList);
+    console.log(AnswerList);                            //Visualize the answer vector
 
-    for (var j = 0; j < AnswerList.length; j++) {
-      if (j === 0){
-        if (AnswerList[j] === passwordText[j].a) {
-          UppercaseLetter(passwordLength,repo);
+    for (var j = 0; j < AnswerList.length; j++) {      //for to loop into the passwordText object where the questions are found.
+      if (j === 0){                                     //If to know the number of question
+        if (AnswerList[j] === passwordText[j].a) {      //if to compare the user answers
+          UppercaseLetter(passwordLength,repo);         //Call the function and send the empty array and the password length. 
           } else {
-            passwordLength = passwordLength;
+            passwordLength = passwordLength;          //Make sure that the password length size wont change.
           } 
         }
 
@@ -154,7 +154,7 @@ function generatePassword(){
           }
         }
     }
-    var password = repo.join("");
+    var password = repo.join("");         //After the for loop ends, get the final version of the repo and convert it to string.
     console.log(password);
     return password;
   } else {
